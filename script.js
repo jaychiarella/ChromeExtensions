@@ -1,18 +1,13 @@
-/*
-// event which fires when highlighted or selected tabs in a window changes .. see: https://developer.chrome.com/extensions/tabs#event-onHighlighted 
-// whenever a tab is highlighted .... res
-chrome.tabs.onHighlighted.addListener(function(){
-    
-
-});
-*/
-
+// query the chrome tabs for any discarded tabs
+// renders the UI using url, title, and id of the tab as parameters 
 function tabQuery(){
     
+    // only included discarded tabs in query 
     const queryInfo = {
         discarded: true
     };
 
+    // query the tabs, and render the UI with url, title, and id of the specific tab as parameters
     chrome.tabs.query(queryInfo, function(tabs){
         tabs.forEach(tab => {
             renderTab(tab.url, tab.title, tab.id);
@@ -20,12 +15,7 @@ function tabQuery(){
     });
 }
 
-/** 
- * @description: adjust text size of paragraphs to fit in small extension window
- * @param {string} convertTo40Chars tab-url or tab-title
- * @returns {string} tab-url or tab-title at 
- *  
-*/
+// convert url and title to max 40 characters to fit extension
 function max40Characters(convertTo40Chars){
     return (convertTo40Chars.length <= 40? `${convertTo40Chars}` : `${convertTo40Chars.slice(0,37)}...`);
 }
@@ -39,7 +29,6 @@ function closeTab(tabIndex,tab_component){
     
     //remove tab from chrome window
     chrome.tabs.remove(tabIndex);
-
 }
 
 /** 
