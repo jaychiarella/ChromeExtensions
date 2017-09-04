@@ -4,7 +4,8 @@
   "description": "Chrome Extensions",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lintup": "./node_modules/.bin/eslint script.js"
   },
   "repository": {
     "type": "git",
