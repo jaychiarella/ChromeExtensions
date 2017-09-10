@@ -9,7 +9,7 @@ function tabQuery() {
     // query the tabs, and render the UI with url, title, and id of the specific tab as parameters
     chrome.tabs.query(queryInfo, (tabs) => {
         tabs.forEach((tab) => {
-            renderTab(tab.url, tab.title, tab.id);
+            renderTabComponent(tab.url, tab.title, tab.id);
         });
     });
 }
@@ -29,47 +29,64 @@ function closeTab(tabIndex, tab_component) {
     chrome.tabs.remove(tabIndex);
 }
 
-/**
- * tab_component.addEventListener('click',function(e){
-        console.log(e.target);
-    });
-* Create Tab Component.
-*
-* @param {function(string)} tabUrl - individual tab url for each tab on chrome
-*/
-function renderTab(tabUrl, tabTitle, tabIndex) {
-    // create container tab component as paragraph element
-    // later used to contain the text and buttons
-    const tab_component = document.createElement('div');
-    tab_component.classList.add('tab');
-    tab_component.dataset.id = tabIndex;
+// 
+//
+function renderTabComponent(tabUrl, tabTitle, tabIndex) {
+
+    // create container tab component
+    const tab_component = renderContainer()
 
     // create url paragraph component
-    // only use 40 chars
-    const tab_component_url = document.createElement('p');
-    tab_component_url.textContent = max40Characters(tabUrl);
+    const tab_component_url = renderTabComponentUrl(tabUrl);
 
     // create title paragraph component
-    // only use 40 chars
-    const tab_component_title = document.createElement('p');
-    tab_component_title.textContent = max40Characters(tabTitle);
+    const tab_component_title = renderTabComponentTitle(tabTitle);
 
+    // create delete button
+    const add_discard_btn = addDiscardButton();
 
     // append url and title component to the
     tab_component.appendChild(tab_component_url);
     tab_component.appendChild(tab_component_title);
 
-
-    const add_discard_btn = document.createElement('button');
-    add_discard_btn.textContent = 'Close this tab';
-    add_discard_btn.classList.add('buttons');
+    // eventlistener for closing tabUI at tab index when button clicked
     add_discard_btn.addEventListener('click', () => {
         closeTab(tabIndex, tab_component);
     });
+
     tab_component.appendChild(add_discard_btn);
 
     // get tag destination and append the tab component
     document.getElementById('tabs').appendChild(tab_component);
+}
+
+// renders CONTAINER UI of tab
+function renderContainer(){
+    const tab_component = document.createElement('div');
+    tab_component.classList.add('tab');
+    return tab_component
+}
+
+// renders URL UI of tab
+function renderTabComponentUrl(tabUrl){
+    const tab_component_url = document.createElement('p');
+    tab_component_url.textContent = max40Characters(tabUrl);
+    return tab_component_url
+}
+
+// renders TITLE UI of tab 
+function renderTabComponentTitle(tabTitle){
+    const tab_component_title = document.createElement('p');
+    tab_component_title.textContent = max40Characters(tabTitle);
+    return tab_component_title
+}
+
+// renders (delete) BUTTON of tab
+function addDiscardButton(){
+    const discard_btn = document.createElement('button');
+    discard_btn.textContent = 'Close this tab';
+    discard_btn.classList.add('buttons');
+    return discard_btn
 }
 
 document.addEventListener('DOMContentLoaded', () => {
