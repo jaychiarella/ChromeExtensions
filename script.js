@@ -14,6 +14,11 @@ function tabQuery() {
     });
 }
 
+function deleteUI(component){
+    component.parentNode.removeChild(component);
+}
+
+
 // convert url and title to max 40 characters to fit extension
 function max40Characters(convertTo40Chars) {
     return (convertTo40Chars.length <= 40 ? `${convertTo40Chars}` : `${convertTo40Chars.slice(0, 37)}...`);
@@ -22,8 +27,9 @@ function max40Characters(convertTo40Chars) {
 // delete tab when 'close this tab' button is click
 // remove div child and remove tab
 function closeTab(tabIndex, tab_component) {
+    
     // remove div from html page
-    tab_component.parentNode.removeChild(tab_component);
+    deleteUI(tab_component);
 
     // remove tab from chrome window
     chrome.tabs.remove(tabIndex);
