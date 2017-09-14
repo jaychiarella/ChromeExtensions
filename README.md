@@ -8,4 +8,4 @@ TODO ... add the chrome extension to the google app start
 
 ### Why Use This?
 
-If you have a million chrome tabs open, chrome automatically 'discards' [sort of unloads the webpage from the tab](https://developers.google.com/web/updates/2015/09/tab-discarding) old tabs that haven't been accessed in a while
+If you have a million chrome tabs open, chrome automatically ['discards'](https://developers.google.com/web/updates/2015/09/tab-discarding) (sort of unloads the webpage from the tab) old tabs that haven't been accessed in a while
