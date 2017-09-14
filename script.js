@@ -14,7 +14,8 @@ function tabQuery() {
     });
 }
 
-function deleteUI(component){
+// delete tab option on extension
+function deleteUI(component) {
     component.parentNode.removeChild(component);
 }
 
@@ -27,7 +28,6 @@ function max40Characters(convertTo40Chars) {
 // delete tab when 'close this tab' button is click
 // remove div child and remove tab
 function closeTab(tabIndex, tab_component) {
-    
     // remove div from html page
     deleteUI(tab_component);
 
