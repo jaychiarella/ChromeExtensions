@@ -19,7 +19,6 @@ function deleteUI(component) {
     component.parentNode.removeChild(component);
 }
 
-
 // convert url and title to max 40 characters to fit extension
 function max40Characters(convertTo40Chars) {
     return (convertTo40Chars.length <= 40 ? `${convertTo40Chars}` : `${convertTo40Chars.slice(0, 37)}...`);
@@ -64,8 +63,7 @@ function addDiscardButton() {
     return discard_btn;
 }
 
-//
-//
+// render the discarded tab component on the chrome extension
 function renderTabComponent(tabUrl, tabTitle, tabIndex) {
     // create container tab component
     const tab_component = renderContainer();
